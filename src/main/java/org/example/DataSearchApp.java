@@ -17,6 +17,7 @@ public class DataSearchApp {
                 .appName("Word Count")
                 .config("spark.driver.memory", "10g")
                 .getOrCreate();
+        sparkSession.sparkContext().setLogLevel("OFF");
         sparkSession.read().option("header",true).csv(path).createOrReplaceTempView("df1View");
         sparkSession.sql(query).show(false);
         sparkSession.stop();
